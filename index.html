@@ -1,0 +1,136 @@
+	<!doctype html>
+	<html lang="en">
+	<head>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <title>jQuery UI Autocomplete - Multiple values</title>
+	  <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">  -->
+	  <link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
+	 <!--  <link rel="stylesheet" href="/resources/demos/style.css"> -->
+	  <script src="jquery.min.js"></script>
+	  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	  <script type="text/javascript" src="content.js"></script> 
+	  <script type="text/javascript" src="autoComplete.js"></script>
+	 <!--  <script>
+	  $( function() {
+	   var content = [
+				{firstWord:"Javascript" , nextWord : ["is","was","can"]} ,
+				{firstWord:"Java" , nextWord:["is","was","can"]},
+				{firstWord:"Hi" , nextWord:["one","two","three","four"]},
+				{firstWord:"Hello" , nextWord:["world","bob","json","class"]},
+				{firstWord:"What" , nextWord:["is","was"]},
+				{firstWord:"Is" , nextWord:["good","better","bad"]},
+				{firstWord:"Was" , nextWord:["good","better","bad"]},
+				{firstWord:"Can" , nextWord:["type","dream"]}
+			];
+
+			var availableTags = [] , inputValue , lastInputValue , eachInputValue = [];
+
+			for(var i = 0 ; i < content.length ; i++){
+				   availableTags[i]=content[i].firstWord;
+			}
+
+			initialAvailableTags = function(){
+				return availableTags;
+			}
+
+
+			var getAvailableTags = function(){
+
+				lastInputValue = titleCase();
+
+				if(inputValue&&availableTags.indexOf(lastInputValue)){
+					console.log(availableTags.indexOf(lastInputValue));
+					
+						for(var i = 0 ; i <content.length ; i++){
+							if(lastInputValue==content[i].firstWord){
+								availableTags=content[i].nextWord;
+							    console.log("dao"+availableTags);
+							    console.log("dao"+content[i].nextWord);}
+
+						}
+		           console.log("!!!!!"+availableTags);
+				}else{
+					initialAvailableTags();
+					console.log("????"+availableTags);
+				}
+
+				
+				return availableTags;
+
+			}
+
+
+    //将最后一个单词首字母大写
+	function titleCase() {
+		inputValue = $.trim($('#tags').val());
+		console.log(inputValue);
+		eachInputValue = inputValue.split(" ");
+		/*console.log("分离后的单词"+eachInputValue+eachInputValue.length);*/
+		lastInputValue = eachInputValue[eachInputValue.length-1];
+		/*console.log("测试最后一个单词"+lastInputValue);*/
+		lastInputValueA = lastInputValue.toUpperCase();
+        
+        lastInputValue = lastInputValueA[0] + lastInputValue.substring(1, lastInputValue.length);
+
+	    return lastInputValue;
+	}
+
+
+			
+	    function split( val ) {
+	      return val.split( / \s*/ );
+	    }
+	    function extractLast( term ) {
+	      return split( term ).pop();
+	    }
+	    
+	 
+	    $( "#tags" )
+	      // don't navigate away from the field on tab when selecting an item
+	      .on( "keydown", function( event ) {
+	        if ( event.keyCode === $.ui.keyCode.TAB &&
+	            $( this ).autocomplete( "instance" ).menu.active ) {
+	          event.preventDefault();
+	        }
+	      })
+	      .autocomplete({
+	        minLength: 0,
+	        source: function( request, response ) {
+	          // delegate back to autocomplete, but extract the last term
+	          response( $.ui.autocomplete.filter(
+	            getAvailableTags(), extractLast( request.term ) ) );
+	        },
+	        focus: function() {
+	          // prevent value inserted on focus
+	          return false;
+	        },
+	        select: function( event, ui ) {
+	          var terms = split( this.value );
+	          // remove the current input
+	          terms.pop();
+	          // add the selected item
+	          terms.push( ui.item.value );
+	          // add placeholder to get the comma-and-space at the end
+	          terms.push( "" );
+	          this.value = terms.join( " " );
+	          return false;
+	        }
+	      });
+
+	      
+
+	  } );
+	  </script>
+ -->
+	</head>
+	<body>
+	 
+	<div class="ui-widget">
+	  <label for="tags">Tag programming languages: </label>
+	  <input id="tags" size="50" >
+	</div>
+	 
+	 
+	</body>
+	</html>
